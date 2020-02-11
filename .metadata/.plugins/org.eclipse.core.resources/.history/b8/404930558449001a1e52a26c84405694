@@ -1,0 +1,158 @@
+package GradeMain;
+
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.control.TableColumn;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
+import javafx.scene.control.Button;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.List;
+import java.util.ResourceBundle;
+
+import GradeVO.vo;
+import Service.GradeService;
+import Service.ServiceImpl;
+import javafx.event.ActionEvent;
+import javafx.scene.control.TextField;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+
+public class controller {
+	
+	GradeService service = ServiceImpl.getInstance();
+	List<vo> list = service.getData();
+
+	    @FXML
+	    private TableColumn<vo, String> tb1;
+
+	    @FXML
+	    private TableColumn<vo, String> tb2;
+	    
+	    @FXML
+	    private TableColumn<vo, String> tb3;
+
+	    @FXML
+	    private TableColumn<vo, String> tbName;
+
+	    @FXML
+	    private Button add;
+	    
+	    @FXML
+	    private Button graph;
+
+	    @FXML
+	    void goAdd(ActionEvent event) {
+	    	
+
+	    }
+
+	    @FXML
+	    void goGraph(ActionEvent event) {
+	    	//축의 값이 주로 문자열일때 사용하는 객체
+			CategoryAxis xAxis = new CategoryAxis();
+			
+			//축의 값이 숫자일때 사용하는 객체
+			NumberAxis yAxis = new NumberAxis();
+			
+			//위에서 만든 축 정보는 이용한 BarChart객체 생성
+			BarChart<String, Number> bc = new BarChart<>(xAxis, yAxis);
+			
+			bc.setTitle("막대 그래프");
+			
+			//Barchart에 나타날 데이터 수성
+			XYChart.Series<String, Number> ser1 = new XYChart.Series<>();
+			XYChart.Series<String, Number> ser2 = new XYChart.Series<>();
+			XYChart.Series<String, Number> ser3 = new XYChart.Series<>();
+			
+			ser1.setName("국어");
+			ser2.setName("수학");
+			ser3.setName("영어");
+			
+			ser1.getData().add(new XYChart.Data<String, Number>("한국", 40000));
+			ser2.getData().add(new XYChart.Data<String, Number>("브라질", 20000));
+			ser3.getData().add(new XYChart.Data<String, Number>("프랑스", 10000));
+			
+		
+
+	    }
+
+	
+	//---------------------------------------------------------
+	
+	
+	@FXML TextField txt1;
+	@FXML TextField txt2;
+	@FXML TextField txt3;
+	@FXML TextField txt4;
+	@FXML Button btnSave;
+	@FXML Button btnCan;
+
+	@FXML public void goSave(ActionEvent event) {
+			
+			Stage add = new Stage(StageStyle.UTILITY);
+			
+			add.initModality(Modality.APPLICATION_MODAL);
+			
+			
+			add.setTitle("추가 페이지");
+			
+			Parent pageadd = null;
+			try {
+				pageadd = FXMLLoader.load(getClass().getResource("add.fxml"));
+				
+			}catch (IOException ex) {
+				ex.printStackTrace();
+			}
+			//부모창에서 자식창 객체 얻기
+			TextField txt1 = (TextField) pageadd.lookup("#txt1");
+			TextField txt2 = (TextField) pageadd.lookup("#txt2");
+			TextField txt3 = (TextField) pageadd.lookup("#txt3");
+			TextField txt4 = (TextField) pageadd.lookup("#txt4");
+			
+			Button btnSave = (Button) pageadd.lookup("#btnSave");
+			btnSave.setOnAction(e2->{
+				vo gv = new vo();
+				gv.setTxt1(txt1.getText());
+				gv.setTxt1(txt2.getText());
+				gv.setTxt1(txt3.getText());
+				gv.setTxt1(txt4.getText());
+				
+				
+			});
+			
+//			Button btnCan = pageadd.lookup("#btnCan");
+//			btnCan.setOnAction(e3->{
+//				add.close();
+//			});
+			
+			//scene추가
+			Scene scene = new Scene(pageadd);
+			
+			//stage(add)에 scene객체 추가
+			add.setScene(scene);
+			add.setResizable(false);
+			add.show();
+//		});
+	}
+	@FXML public void goCan(ActionEvent event) {
+		
+	}
+	
+	
+	
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		
+	}
+	
+	
+}

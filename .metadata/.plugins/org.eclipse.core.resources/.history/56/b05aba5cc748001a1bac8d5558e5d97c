@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="374.0" prefWidth="511.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.grade_controller">
+   <children>
+      <VBox prefHeight="372.0" prefWidth="511.0">
+         <children>
+            <HBox prefHeight="301.0" prefWidth="508.0">
+               <children>
+                  <TableView fx:id="tv" prefHeight="302.0" prefWidth="512.0">
+                    <columns>
+                      <TableColumn fx:id="tname" prefWidth="106.0" text="이름" />
+                      <TableColumn fx:id="tlang" prefWidth="144.0" text="국어" />
+                        <TableColumn fx:id="tmath" prefWidth="131.0" text="수학" />
+                        <TableColumn fx:id="teng" prefWidth="130.0" text="영어" />
+                    </columns>
+                  </TableView>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="71.0" prefWidth="511.0" spacing="30.0">
+               <children>
+                  <Button fx:id="btnadd" mnemonicParsing="false" onAction="#btnaddClicked" text="추가" />
+                  <Button mnemonicParsing="false" text="학생별 막대그래프" onAction="#btnbarClicked" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

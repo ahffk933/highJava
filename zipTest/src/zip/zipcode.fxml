@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="zip.zipController">
+   <children>
+      <ComboBox fx:id="villnm" layoutX="71.0" layoutY="6.0" prefWidth="150.0" />
+      <TextField fx:id="txtfd" layoutX="221.0" layoutY="6.0" prefHeight="29.0" prefWidth="208.0" />
+      <Button fx:id="search" layoutX="428.0" layoutY="6.0" mnemonicParsing="false" onAction="#goSearch" text="검색" />
+      <TableView fx:id="zipTable" layoutY="34.0" prefHeight="369.0" prefWidth="600.0">
+        <columns>
+          <TableColumn fx:id="zip" prefWidth="117.0" text="우편번호" />
+          <TableColumn fx:id="city" prefWidth="96.0" text="시도" />
+            <TableColumn fx:id="gugun" prefWidth="105.0" text="구군" />
+            <TableColumn fx:id="dong" prefWidth="114.0" text="동" />
+            <TableColumn fx:id="staddr" minWidth="0.0" prefWidth="167.0" text="번지" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

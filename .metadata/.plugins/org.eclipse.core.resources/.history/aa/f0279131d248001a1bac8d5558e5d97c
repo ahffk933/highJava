@@ -1,0 +1,10 @@
+package Service;
+
+public interface GradeService {
+
+	List<vo> getData();
+
+	void insertData(vo gv);
+
+
+}

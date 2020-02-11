@@ -1,0 +1,14 @@
+package Service;
+
+import java.util.List;
+
+import GradeVO.VO;
+
+public interface GradeService {
+
+	List<VO> getData();
+
+	void insertData(VO vo);
+
+
+}

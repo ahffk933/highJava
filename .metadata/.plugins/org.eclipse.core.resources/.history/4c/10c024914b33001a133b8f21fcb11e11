@@ -1,0 +1,45 @@
+package kr.or.ddit.basic;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+/*
+ 	JDBC를 이용한 데이터베이스 처리 순서
+ 	
+ 	순서 : JDBC드라이버 로딩 => 해당 DB에 접속 =>
+ 		  질의(SQL명령을 수행) => 질의결과를 받아서 처리 => 종료(자원반납)
+ 		  
+ 	1. JDBC드라이버 로딩(오라클기준)
+ 	 => JDBC드라이버는 DB를 만든 회사에서 제공
+ 	 Class.forName("oracle.jdbc.driver.OracleDriver");
+ 	 
+ 	2. 접속하기 : 접속이 성공하면 Connection객체가 생성된다
+ 	 DriverManager.getConnection()메서드를 이용한다
+ 	 
+ 	3. 질의 Statement객체 또는 PreparedStatement객체를 이용하여 SQL문장을 실행
+ 	
+ 	4. 결과 : 
+ 		1) SQL문이 select일 경우 -> ResultSet객체가 만들어진다
+ 			ResultSet객체에는 select한 결과가 저장
+ 		2) SQL문이 insert, update, delete일 경우 -> 정수값을 반환한다
+ 			(정수값은 보통 실행에 성공한 레코드 수를 말한다)
+ 		
+ */
+
+public class T01_JdbcTest {
+	public static void main(String[] args) {
+		// DB작업에 필요한 객체변수 선언
+		Connection conn = null;
+		Statement stnt = null;
+		ResultSet rs = null;  //쿼리문이 select일 경우 필요
+		
+		try {
+			//1. 드라이버 로딩
+			Class.forName("Oracle.jdbc.driver.OracleDriver");
+		}catch(ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+
+}

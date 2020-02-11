@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane fx:controller="exam_0130.Mem_controller" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="566.0" prefWidth="534.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox alignment="TOP_CENTER" layoutX="73.0" layoutY="14.0">
+         <children>
+            <HBox alignment="CENTER">
+               <children>
+                  <GridPane alignment="CENTER" prefHeight="129.0" prefWidth="336.0">
+                     <children>
+                        <Label text="회원 ID : " />
+                        <Label text="회원이름 : " GridPane.rowIndex="1" />
+                        <Label text="회원 전화 :" GridPane.rowIndex="2" />
+                        <Label text="회원 주소 : " GridPane.rowIndex="3" />
+                        <TextField fx:id="mem_id" text="회원 ID" GridPane.columnIndex="1" />
+                        <TextField fx:id="mem_nm" prefHeight="23.0" prefWidth="240.0" text="회원이름" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="mem_tel" text="회원전화" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="mem_addr" text="회원주소" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                     </children>
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="274.0" minWidth="10.0" prefWidth="74.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="476.0" minWidth="10.0" prefWidth="262.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="34.0" minHeight="10.0" prefHeight="34.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="34.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </GridPane>
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </VBox>
+      <TableView fx:id="tv" layoutX="20.0" layoutY="234.0" prefHeight="309.0" prefWidth="495.0">
+        <columns>
+          <TableColumn fx:id="res_id" prefWidth="93.0" text="회원 ID" />
+          <TableColumn fx:id="res_nm" prefWidth="91.0" text="회원이름" />
+            <TableColumn fx:id="res_tel" minWidth="0.0" prefWidth="133.0" text="회원전화" />
+            <TableColumn fx:id="res_addr" prefWidth="140.0" text="회원주소" />
+        </columns>
+      </TableView>
+      <HBox alignment="BASELINE_CENTER" layoutX="83.0" layoutY="180.0" prefHeight="23.0" prefWidth="365.0" spacing="15.0">
+         <children>
+            <Button fx:id="add" mnemonicParsing="false" text="추가" />
+            <Button fx:id="edit" lineSpacing="10.0" mnemonicParsing="false" text="수정"  />
+            <Button fx:id="del" mnemonicParsing="false" text="삭제" />
+            <Button fx:id="confirm" mnemonicParsing="false" text="확인" />
+            <Button fx:id="cancel" mnemonicParsing="false" text="취소" />
+         </children>
+      </HBox>
+   </children>
+</Pane>

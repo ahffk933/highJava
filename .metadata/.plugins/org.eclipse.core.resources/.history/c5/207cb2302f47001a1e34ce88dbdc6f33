@@ -1,0 +1,340 @@
+package prod;
+
+
+import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ResourceBundle;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.cell.PropertyValueFactory;
+import util.DBUtil;
+import vo.LprodVO;
+import vo.ProdVO;
+import javafx.scene.control.TableView;
+import javafx.scene.control.Alert.AlertType;
+
+public class ProdController implements Initializable{
+	
+	private Connection conn;
+	private Statement stmt;
+	private PreparedStatement pstmt;
+	private ResultSet res;
+	
+	 @FXML
+	    private TableColumn<ProdVO, String> prod_sale;
+
+	    @FXML
+	    private TableColumn<ProdVO, String> prod_outline;
+
+	    @FXML
+	    private TableColumn<ProdVO, String> prod_cost;
+
+	    @FXML
+	    private TableColumn<ProdVO, String> prod_price;
+
+	    @FXML
+	    private TableColumn<ProdVO, String> prod_name;
+
+	    @FXML
+	    private TableColumn<ProdVO, String> prod_id;
+
+	    @FXML
+	    private TableColumn<ProdVO, String> prod_lgu;
+
+	    @FXML
+	    private TableColumn<ProdVO, String> prod_detail;
+
+	    @FXML
+	    private TableColumn<ProdVO, String> prod_buyer;
+	    
+	    @FXML
+	    private ComboBox<ProdVO> com2;
+
+	    @FXML
+	    private ComboBox<LprodVO> com1;
+
+		
+	    @FXML TableView<ProdVO> tbView;
+	    
+	    ObservableList<ProdVO> table = FXCollections.observableArrayList();
+	    ObservableList<LprodVO> combo1 = FXCollections.observableArrayList();
+	    ObservableList<ProdVO> combo2 = FXCollections.observableArrayList();
+
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		/*combo1 = FXCollections.observableArrayList
+				("컴퓨터 제품", "전자제품", "여성캐주얼", "남성캐주얼", "피혁잡화", "화장품", "음반/CD", "도서", "문구류");
+		com1.setItems(combo1);  //콤보박스를 내리면 list 나옴
+		com1.setValue("컴퓨터 제품");  //처음에 보여지는 값
+*/    	
+		//테이블설정
+		prod_id.setCellValueFactory(new PropertyValueFactory<>("prod_id"));
+		prod_name.setCellValueFactory(new PropertyValueFactory<>("prod_name"));
+		prod_lgu.setCellValueFactory(new PropertyValueFactory<>("prod_lgu"));
+		prod_buyer.setCellValueFactory(new PropertyValueFactory<>("prod_buyer"));
+		prod_cost.setCellValueFactory(new PropertyValueFactory<>("prod_cost"));
+		prod_price.setCellValueFactory(new PropertyValueFactory<>("prod_price"));
+		prod_sale.setCellValueFactory(new PropertyValueFactory<>("prod_sale"));
+		prod_outline.setCellValueFactory(new PropertyValueFactory<>("prod_outline"));
+		prod_detail.setCellValueFactory(new PropertyValueFactory<>("prod_detail"));
+    	
+		getLprod();
+
+	}
+	
+	
+	public void getLprod(){
+		try {
+			conn = DBUtil.getConnection();
+			String sql = "select * from lprod";
+			pstmt = conn.prepareStatement(sql);
+			res = pstmt.executeQuery(sql);
+			while(res.next()) {
+				LprodVO pv = new LprodVO();
+				pv.setLprod_id(res.getInt("lprod_id"));
+				pv.setLprod_gu(res.getString("lprod_gu"));
+				pv.setLprod_nm(res.getString("lprod_nm"));
+				combo1.add(pv);
+				
+				
+			}
+			
+			com1.setItems(combo1);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			disConnect();
+			
+		}
+		
+	}
+
+	@FXML public void search(ActionEvent event) {
+		
+/*		String select = com2.getSelectionModel().getSelectedItem();
+		try {
+			conn = DBUtil.getConnection();
+			String sql = "select * from prod where prod_name in " + "' " + select + " '";
+			pstmt = conn.prepareStatement(sql);
+			res = pstmt.executeQuery(sql);
+			while(res.next()) {
+				ProdVO pv = new ProdVO();
+				pv.setProd_id(res.getString("prod_id"));
+				pv.setProd_name(res.getString("prod_name"));
+				pv.setProd_lgu(res.getString("prod_lgu"));
+				pv.setProd_buyer(res.getString("prod_buyer"));
+				pv.setProd_cost(res.getString("prod_cost"));
+				pv.setProd_id(res.getString("prod_price"));
+				pv.setProd_sale(res.getString("prod_sale"));
+				pv.setProd_outline(res.getString("prod_outline"));
+				pv.setProd_detail(res.getString("prod_detail"));
+				
+				table.add(pv);
+				tbView.setItems(table);
+				
+				
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			disConnect();
+			
+		}*/
+	}
+
+	@FXML public void select(ActionEvent event) {
+		for(int i=0; i<com2.getItems().size(); i++) {
+			com2.getItems().clear();
+		}
+		for(int i=0; i<tbView.getItems().size(); i++) {
+			tbView.getItems().clear();
+		}
+		
+		String com = com1.getSelectionModel().getSelectedItem();
+		if(com.equals("컴퓨터 제품")) {
+			try {
+				conn = DBUtil.getConnection();
+				String sql = "select prod_name from prod where prod_id between 'P101000001' and 'P101000006'";
+				pstmt = conn.prepareStatement(sql);
+				res = pstmt.executeQuery(sql);
+				while(res.next()) {
+					ProdVO pv = new ProdVO();		
+					pv.setProd_name(res.getString("prod_name"));
+					
+					combo2.add(pv.getProd_name());
+					com2.setItems(combo2);
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				disConnect();
+			}
+		}
+		if(com.equals("전자제품")) {
+			try {
+				conn = DBUtil.getConnection();
+				String sql = "select prod_name from prod where prod_id between 'P102000001' and 'P102000007'";
+				pstmt = conn.prepareStatement(sql);
+				res = pstmt.executeQuery(sql);
+				while(res.next()) {
+					ProdVO pv = new ProdVO();		
+					pv.setProd_name(res.getString("prod_name"));
+					
+					combo2.add(pv.getProd_name());
+					com2.setItems(combo2);
+				}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				disConnect();
+			}
+		
+		}
+			if(com.equals("여성캐주얼")) {
+			try {
+				conn = DBUtil.getConnection();
+				String sql = "select prod_name from prod where prod_id between 'P201000001' and 'P201000021'";
+				pstmt = conn.prepareStatement(sql);
+				res = pstmt.executeQuery(sql);
+				while(res.next()) {
+					ProdVO pv = new ProdVO();		
+					pv.setProd_name(res.getString("prod_name"));
+					
+					combo2.add(pv.getProd_name());
+					com2.setItems(combo2);
+				}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				disConnect();
+			}
+		
+		}
+			if(com.equals("남성캐주얼")) {
+			try {
+				conn = DBUtil.getConnection();
+				String sql = "select prod_name from prod where prod_id between 'P202000001' and 'P202000021'";
+				pstmt = conn.prepareStatement(sql);
+				res = pstmt.executeQuery(sql);
+				while(res.next()) {
+					ProdVO pv = new ProdVO();		
+					pv.setProd_name(res.getString("prod_name"));
+					
+					combo2.add(pv.getProd_name());
+					com2.setItems(combo2);
+				}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				disConnect();
+			}
+		
+		}
+			if(com.equals("피혁잡화")) {
+			try {
+				conn = DBUtil.getConnection();
+				String sql = "select prod_name from prod where prod_id between 'P301000001' and 'P301000004'";
+				pstmt = conn.prepareStatement(sql);
+				res = pstmt.executeQuery(sql);
+				while(res.next()) {
+					ProdVO pv = new ProdVO();		
+					pv.setProd_name(res.getString("prod_name"));
+					
+					combo2.add(pv.getProd_name());
+					com2.setItems(combo2);
+				}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				disConnect();
+			}
+		
+		}
+			if(com.equals("화장품")) {
+			try {
+				conn = DBUtil.getConnection();
+				String sql = "select prod_name from prod where prod_id between 'P302000001' and 'P302000023'";
+				pstmt = conn.prepareStatement(sql);
+				res = pstmt.executeQuery(sql);
+				while(res.next()) {
+					ProdVO pv = new ProdVO();		
+					pv.setProd_name(res.getString("prod_name"));
+					
+					combo2.add(pv.getProd_name());
+					com2.setItems(combo2);
+				}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				disConnect();
+			}
+		
+		}
+			if(com.equals("음반/CD")) {
+			infoMsg("아직 상품이 준비중입니다", "기다려 주세요");
+		}
+			if(com.equals("도서")) {
+				infoMsg("아직 상품이 준비중입니다", "기다려 주세요");
+		}
+			if(com.equals("문구류")) {
+				infoMsg("아직 상품이 준비중입니다", "기다려 주세요");
+		}		
+
+	}
+	
+
+	public void infoMsg(String headerText, String msg) {
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("information");
+		alert.setHeaderText(headerText);
+		alert.setContentText(msg);
+		alert.showAndWait();
+	}
+
+
+
+private void disConnect() {
+	// 반납
+	if(pstmt != null)
+		try {
+			pstmt.close();
+		}catch (SQLException e) {
+			
+		}
+	if(conn != null) 
+		try {
+			conn.close();
+		}catch (SQLException e) {
+			
+		}
+	if(res != null)
+		try {
+			res.close();
+		}catch (SQLException e) {
+			
+		}
+	if(stmt != null)
+		try {
+			stmt.close();
+		}catch (SQLException e) {
+		
+			}
+		}
+}

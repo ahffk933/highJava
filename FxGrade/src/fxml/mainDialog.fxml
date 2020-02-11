@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="table" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller" >
+   <center>
+      <TableView fx:id="tb" onMouseClicked="#selectRow" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn fx:id="name" minWidth="120.0" prefWidth="150.0" text="이름" />
+          <TableColumn fx:id="kor" minWidth="120.0" prefWidth="150.0" text="국어" />
+          <TableColumn fx:id="math" minWidth="120.0" prefWidth="150.0" text="수학" />
+          <TableColumn fx:id="eng" minWidth="120.0" prefWidth="150.0" text="영어" />
+        </columns>
+      </TableView>
+   </center>
+   <bottom>
+      <HBox alignment="CENTER" prefHeight="80.0" prefWidth="200.0" spacing="30.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="insertButton" mnemonicParsing="false" onAction="#clickInsert" text="추가" />
+            <Button fx:id="getBarChart" mnemonicParsing="false" onAction="#clickBarChart" text="학생별 막대 그래프" />
+         </children>
+      </HBox>
+   </bottom>
+</BorderPane>

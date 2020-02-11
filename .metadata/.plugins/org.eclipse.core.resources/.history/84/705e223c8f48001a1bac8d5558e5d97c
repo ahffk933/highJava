@@ -1,0 +1,23 @@
+package kr.or.ddit.basic;
+
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.Socket;
+
+public class Sender extends Thread{
+	Socket socket;
+	DataOutputStream dos;
+	String name;
+	
+	public Sender(Socket socket) {
+		this.socket = socket;
+		name = "[" + socket.getInetAddress() + ":" + socket.getPort() + "]";
+		
+		try {
+			dos = new DataOutputStream(socket.getOutputStream());
+		}catch (IOException e) {
+			// TODO: handle exception
+		}
+	}
+
+}

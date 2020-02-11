@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="285.0" prefWidth="283.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox layoutY="-1.0" prefHeight="289.0" prefWidth="283.0">
+         <children>
+            <HBox prefHeight="56.0" prefWidth="283.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="56.0" prefWidth="103.0">
+                     <children>
+                        <Label text="이름" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <TextField fx:id="txtName"  />
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+            <HBox prefHeight="56.0" prefWidth="283.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="56.0" prefWidth="103.0">
+                     <children>
+                        <Label text="국어" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <TextField fx:id="txtKor"  />
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+            <HBox prefHeight="56.0" prefWidth="283.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="56.0" prefWidth="103.0">
+                     <children>
+                        <Label text="수학" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <TextField fx:id="txtMath" />
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+            <HBox prefHeight="56.0" prefWidth="283.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="56.0" prefWidth="103.0">
+                     <children>
+                        <Label text="영어" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <TextField fx:id="txtEng" />
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="66.0" prefWidth="283.0" spacing="20.0">
+               <children>
+                  <Button fx:id="btnOk" mnemonicParsing="false" text="저장" />
+                  <Button fx:id="btnCancel" mnemonicParsing="false" text="취소" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

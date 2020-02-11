@@ -1,0 +1,26 @@
+package kr.or.ddit.basic;
+
+import java.io.File;
+import java.io.IOException;
+
+public class Assignment {
+	public static void main(String[] args) {
+		File f1 = new File("e:/D_Other/tulips.jpg");
+	
+		
+		if(f1.exists()){
+			System.out.println(f1.getAbsolutePath() + "은 존재합니다.");
+		}else{
+			System.out.println(f1.getAbsolutePath() + "은 없는 파일입니다.");
+			try {
+				if(f1.createNewFile()){
+					System.out.println(f1.getAbsolutePath() + 
+											"파일을 새로 만들었습니다.");
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+
+}

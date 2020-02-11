@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="347.0" prefWidth="373.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TextField fx:id="txt1" layoutX="160.0" layoutY="69.0" />
+      <TextField fx:id="txt2" layoutX="160.0" layoutY="115.0" />
+      <TextField fx:id="txt3" layoutX="160.0" layoutY="158.0" />
+      <TextField fx:id="txt4" layoutX="160.0" layoutY="200.0" />
+      <Label layoutX="67.0" layoutY="74.0" text="이름" />
+      <Label layoutX="67.0" layoutY="120.0" text="국어" />
+      <Label layoutX="67.0" layoutY="163.0" text="수학" />
+      <Label layoutX="67.0" layoutY="205.0" text="영어" />
+      <Button fx:id="btnSave" layoutX="106.0" layoutY="284.0" mnemonicParsing="false" onAction="#goSave" text="저장" />
+      <Button fx:id="btnCan" layoutX="212.0" layoutY="284.0" mnemonicParsing="false" onAction="#goCan" text="취소" />
+   </children>
+</AnchorPane>

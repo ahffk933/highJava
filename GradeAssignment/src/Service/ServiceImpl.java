@@ -1,0 +1,36 @@
+package Service;
+
+import java.util.List;
+
+import Dao.DaoImpl;
+import Dao.GradeDao;
+import GradeVO.vo;
+
+public class ServiceImpl implements GradeService{
+	private static ServiceImpl instance;
+	
+	private ServiceImpl() { }
+	
+	public static ServiceImpl getInstance() {
+		if(instance == null) {
+			instance = new ServiceImpl();
+		}
+		return instance;
+	}
+	
+	GradeDao dao = DaoImpl.getInstance();
+
+	@Override
+	public List<vo> getData() {
+		return dao.getData();
+	}
+
+	@Override
+	public void insertData(vo vo) {
+		dao.insertData(vo);
+	}
+	
+	
+	
+
+}
